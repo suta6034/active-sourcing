@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.app.json",
+  "include": [
+    "vite.config.*",
+    "src/**/*",
+    "tests/drivers/**/*",
+    ],
+  "exclude": ["src/stories"],
+  "compilerOptions": {
+    "composite": true,
+    "lib": [],
+    "types": ["node", "jest", "@testing-library/jest-dom"]
+  }
+}

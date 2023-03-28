@@ -1,0 +1,80 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Introduction" />
+
+# Storybook - Team MATCHA
+In order to run the storybook, you should switch to a higher node version (at least node 16), otherwise a typeerror will appear.<br/>
+This Storybook should be used, for displaying, testing and developing the components which we create.
+In order to run the storybook type `npm run storybook` in the command line. After that, a browser window should open where you can
+view all components and the written documentation.<br/>
+
+## Viewing already existing stories
+On the left side of the launched storybook, you can find the tree. Inside the tree are different folders which hold so
+called <i>stories</i>. Each story should be designed for a specific component. A story of a component represents the component
+with a specific predefined configuration. In the bottom of the page are all properties listed which can be modified in order to
+change the appeareance and the behaviour of the component.
+
+## Writing a story
+In order to write a story for a component, a file with the naming `[ComponentName].stories.ts` has to be created. Inside this file,
+the types <i>Meta</i> and <i>Story</i> have to be imported from the package `'@storybook/vue3'`.<br/>
+After the types are imported, a Meta has to be defined and exported as shown below:
+
+```typescript
+export default {
+    title: '[PATH]/[COMPONENT_NAME]',
+    component: [COMPONENT_NAME],
+    argTypes: {
+        [OBJECT TO DEFINE TYPES OF PROPERTIES]
+    },
+} as Meta;
+```
+
+After defining the <i>Meta</i>-part, a template for the stories is defined:
+```typescript
+const Template: Story = (args) => ({
+    components: { [COMPONENT_NAME] },
+    setup() {
+        return { args };
+    },
+    template: `<[COMPONENT_NAME] v-bind="args">[CONTENT FOR SLOT (optional)]</[COMPONENT_NAME]>`,
+});
+```
+
+Now stories can be defined by binding to the template and defining the arguments which are then handed to the
+component.
+
+```typescript
+...
+
+export const STORY1 = Template.bind({});
+STORY1.args = {
+    prop1: [value],
+    prop2: [value],
+    prop3: [value],
+    prop4: [value],
+};
+
+export const STORY2 = Template.bind({});
+STORY2.args = {
+    prop1: [value],
+    prop2: [value],
+    prop3: [value],
+    prop4: [value],
+};
+
+...
+```
+
+When the storybook is launched, the defined stories are parsed and then displayed inside the tree. They don't have to be
+added somewhere else in order to view or edit them inside the launched storybook.
+
+## Writing documentation
+The storybook is not only useful for working with the built components, it can also be used for writing documentation.<br/>
+Documentation can be written inside of <i>[DOCUMENTATION_NAME].stories.mdx</i> files.<br/>
+Every documentation file should start by importing `Meta` and creating the title with it:
+```mdx
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="PATH/DOCUMENTATION_NAME" />
+```
+After defining the title the documentation can be written using markdown language and html syntax.

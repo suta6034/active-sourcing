@@ -1,0 +1,17 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "files": ["./node.d.ts"],
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [".env.development","env.d.ts", "node.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["src/**/*.spec.ts", "src/stories"],
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "useUnknownInCatchVariables": false,
+  }
+}
